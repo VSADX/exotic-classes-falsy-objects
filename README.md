@@ -25,11 +25,14 @@
   class MyElement extends RawElement("button") {
     constructor(text = "") {
       super()
+      
       this.textContent = text
+      
       this.onclick = () => {
         this.dataset.num = Math.random() * 10 | 0
       }
-      this.onmouseover =()=> {
+      
+      this.onmouseover = () => {
         console.log(this.dataset.num)
       }
     }
