@@ -3,7 +3,9 @@ export function Args() {
 }
 
 export function Falsy() {
-  return document.implementation.createHTMLDocument().all
+  const document_all = document.implementation.createDocument(null, null, null).all;
+  Object.setPrototypeOf(document_all, null);
+  return document_all;
 }
 
 export function RawElement(element = "div") {
