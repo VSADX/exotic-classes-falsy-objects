@@ -60,3 +60,6 @@
   console.log(new LongFunction()()) // you can run the function
   // this is nice for breaking a function into the base part.
 ```
+  
+References:  
+@/Simon_
