@@ -14,8 +14,12 @@ export function RawElement(element = "div") {
   }
 }
 
-export function StatefulFunc(fn) {
+export function StaticStatefulFunc(fn) {
     return function() {
         return fn.bind(this)
     }
+}
+
+export function DynamicStatefulFunc(fn) {
+    return () => fn.call(this)
 }
