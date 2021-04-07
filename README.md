@@ -39,7 +39,7 @@
   }
   document.body.appendChild(new MyElement("Normally there is no way to create elements using `new`"))
 ```
-### Extending `function`
+### Adding functions on to a `function`
 ```js
   function MyLongFunction() {
     const x = 42
@@ -48,7 +48,7 @@
     const z = this.add(x_, y)
     return this.invert(z)
   }
-  class LongFunction extends StatefulFunc(MyLongFunction) {
+  class LongFunction extends ProtoFn(MyLongFunction) {
     add(num1, num2) {
       return num1 + num2
     }
@@ -61,5 +61,24 @@
   // this is nice for breaking a function into the base part.
 ```
   
+### Adding state to a `function`
+```js
+function printPizza() {
+  let old_toppings = this.kind
+  this.change()
+  return `${old_toppings} ${this.kind} Pizza`
+}
+class Pizza extends StateFn {
+  constructor(some_fn) {
+    super(some_fn, () => this)
+
+    this.kind = "Cheese"
+  }
+  change() { this.kind = "Pepperoni" }
+}
+let pizzafn = new Pizza(printPizza)
+console.log(pizzafn()) // "Cheese Pepperoni Pizza"
+```
+
 References:  
-@/Simon_
+@/Simon_, @/Okku
