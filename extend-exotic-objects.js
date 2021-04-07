@@ -8,10 +8,13 @@ export function Falsy() {
   return document_all;
 }
 
-export function RawElement(element = "div") {
-  return function() {
-    return document.createElement(element)
-  }
+export function RawElement(tag = "div") {
+    const element = document.createElement(tag)
+    const proto = this.constructor.prototype
+    Object.getOwnPropertyNames(proto).slice(1).forEach(name => 
+        element[name] = proto[name].bind(element))
+  
+    return element
 }
 
 export function StateFn(fn, wrapped_this) {
