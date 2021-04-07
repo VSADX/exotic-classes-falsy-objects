@@ -22,7 +22,7 @@
 ```
 ### Extending specific `HTMLElements`
 ```js
-  class MyElement extends RawElement() {
+  class MyElement extends RawElement {
     constructor(text = "") {
       super("button")
       
