@@ -18,3 +18,9 @@ export function StateFn(fn, wrapped_this) {
     return () => fn.call(
         Object.setPrototypeOf(wrapped_this(), this))   
 }
+
+export function ProtoFn(fn) {
+    return function() {
+        return fn.bind(this)
+    }
+}
