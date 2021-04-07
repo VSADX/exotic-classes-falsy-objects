@@ -22,19 +22,19 @@
 ```
 ### Extending specific `HTMLElements`
 ```js
-  class MyElement extends RawElement("button") {
+  class MyElement extends RawElement() {
     constructor(text = "") {
-      super()
+      super("button")
       
       this.textContent = text
+    }
       
-      this.onclick = () => {
-        this.dataset.num = Math.random() * 10 | 0
-      }
-      
-      this.onmouseover = () => {
-        console.log(this.dataset.num)
-      }
+    onclick() {
+      this.dataset.num = Math.random() * 10 | 0
+    }
+
+    onmouseover() {
+      console.log(this.dataset.num)
     }
   }
   document.body.appendChild(new MyElement("Normally there is no way to create elements using `new`"))
