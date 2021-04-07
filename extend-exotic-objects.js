@@ -12,6 +12,8 @@ export function RawElement(tag = "div") {
     const element = document.createElement(tag)
     const proto = this.constructor.prototype
     Object.getOwnPropertyNames(proto).slice(1).forEach(name => 
+        name.startsWith("on") ?
+        element.addEventListener(name.slice(2), proto[name].bind(element)) :
         element[name] = proto[name].bind(element))
   
     return element
