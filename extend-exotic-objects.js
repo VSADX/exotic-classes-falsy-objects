@@ -14,12 +14,7 @@ export function RawElement(element = "div") {
   }
 }
 
-export function StaticStatefulFunc(fn) {
-    return function() {
-        return fn.bind(this)
-    }
-}
-
-export function DynamicStatefulFunc(fn) {
-    return () => fn.call(this)
+export function StateFn(fn, wrapped_this) {
+    return () => fn.call(
+        Object.setPrototypeOf(wrapped_this(), this))   
 }
