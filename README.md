@@ -66,11 +66,11 @@ if(y) console.log("hi") // "hi"
   
 **Why would I do this?**  
 Since these "falsy" objects are really good at staying hidden, 
-you can use them for exactly that. Useful for arrays of many types.
+you can use them for exactly that. Useful for arrays of many types.  
 **Can falsy objects have properties?**  
 Absolutely, you can make any `class` create falsy objects, 
 your can add methods/functions to your objects - even make 
-your arrays falsy.
+your arrays falsy.  
 **How does the magic work?**  
 You'll have to check the [code](https://github.com/VSADX/exotic-classes-falsy-objects/blob/main/extend-exotic-objects.js#L5).
   
@@ -86,14 +86,14 @@ console.log(new Pirate(2, "boats", 2, "sink"))
 **Notes**  
 These objects look like arrays, but they do not have the functions 
 built into normal arrays. Also, they include a function `callee`, if you 
-run it, it will create a new `Arguments` object.
+run it, it will create a new `Arguments` object.  
 **Why would I do this?**  
 There really isn't a known reason yet, there are a few cases - concepts 
 like `overloading` are tedious in JavaScript - where `extends Arguments` 
 may be helpful.  
 Another idea is to recreate custom stack traces using `Arguments`, you can 
 retrieve the stack using `new Error().stack`, but this potential method would 
-have a custom setup.
+have a custom setup.  
   
 #### Classes that return executable functions!
 **Notes**  
