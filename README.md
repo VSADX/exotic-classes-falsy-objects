@@ -21,3 +21,7 @@ Make your own by extending `arguments`
   
 ## Create a class that returns a function.
 No idea why this is useful, but here you go
+  
+<br><br>
+  
+Here's the [full explanation](https://github.com/VSADX/exotic-classes-falsy-objects/wiki). 
