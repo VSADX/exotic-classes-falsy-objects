@@ -2,8 +2,10 @@ export function Args() {
   return arguments
 }
 
-export function Falsy() {
-  const document_all = document.implementation.createDocument(null, null, null).all;
+export function Falsy(make_falsy = true) {
+  const document_all = make_falsy ? 
+    document.implementation.createDocument(null, null, null).all : 
+    {};
   Object.setPrototypeOf(document_all, this);
   return document_all;
 }
