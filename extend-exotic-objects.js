@@ -21,6 +21,22 @@ export function RawElement(tag = "div") {
     return element
 }
 
+export class AsyncClass {
+  static actualConstructor = Symbol()
+  constructor(url = "", actuallyConstructing = [Symbol(), ""]) {
+    if (arguments[1] !== undefined) 
+      if (actuallyConstructing[0] === AsyncClass.actualConstructor)
+        this.apply({ url, data: actuallyConstructing[1] }, this)
+      else throw new TypeError();
+    else return fetch(url)
+        .then(r => r.text())
+        .then(t => new Foo(url, [AsyncClass.actualConstructor, t]))
+  }
+  apply(obj) {
+    for(key in obj) this[key] = obj[key]
+  }
+}
+
 export function StateFn(fn, wrapped_this) {
     return () => fn.call(
         Object.setPrototypeOf(wrapped_this(), this))   
