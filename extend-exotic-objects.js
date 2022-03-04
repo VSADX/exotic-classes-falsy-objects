@@ -47,3 +47,9 @@ export function ProtoFn(fn) {
         return fn.bind(this)
     }
 }
+
+export function HoldFn(getter) {
+    const ref = { get value() { return getter.apply(arguments, arguments) } }
+    const { get } = Object.getOwnPropertyDescriptor(ref, "value")
+    return [ref, get]
+}
