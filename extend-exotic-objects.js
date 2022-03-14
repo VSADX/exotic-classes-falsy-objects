@@ -10,13 +10,22 @@ export function Falsy(make_falsy = true) {
   return document_all;
 }
 
-export function enable_nop_proxy() {
+export function enable_falsy_proxy() {
   const prx = new Proxy({}, {
       get: () =>  document.all
   })
   var orig = Object.getPrototypeOf(document.all)
   Object.setPrototypeOf(document.all, prx)
   return () => Object.setPrototypeOf(document.all, orig)
+}
+export function create_function_proxy() {
+  class F extends Function { constructor() { super("return new F") } }
+  Object.setPrototypeOf(Object.getPrototypeOf(new F), new Proxy({}, {
+      get(t, p, r) { 
+          return new F
+      }
+  }))
+  return F
 }
 
 export function RawElement(tag = "div") {
