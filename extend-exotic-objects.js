@@ -94,3 +94,26 @@ with(scope) {
 // NaN === NaN false
 // Number.isNaN(NaN) true
 **/
+/**
+// undefined
+document.all[Symbol.toPrimitive] = () => NaN
+Object.defineProperty(Object.getPrototypeOf(document.all), Symbol.toStringTag, { get() { return "Undefined" } })
+var scope = { undefined: document.all }
+with(scope) {
+    console.table([
+        { Test: "!undefined", Result: !undefined },
+        { Test: "undefined + undefined", Result: undefined + undefined },
+        { Test: "typeof undefined", Result: typeof undefined },
+        { Test: "toString.call(undefined)", Result: toString.call(undefined) }
+    ])
+}
+var scope = {} // { undefined: document.all }
+with(scope) {
+    console.table([
+        { Test: "!undefined", Result: !undefined },
+        { Test: "undefined + undefined", Result: undefined + undefined },
+        { Test: "typeof undefined", Result: typeof undefined },
+        { Test: "toString.call(undefined)", Result: toString.call(undefined) }
+    ])
+}
+**/
