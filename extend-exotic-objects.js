@@ -96,15 +96,17 @@ with(scope) {
 **/
 /**
 // undefined
-document.all[Symbol.toPrimitive] = () => NaN
+document.all[Symbol.toPrimitive] = type => type == "string" ? "undefined" : NaN
 Object.defineProperty(Object.getPrototypeOf(document.all), Symbol.toStringTag, { get() { return "Undefined" } })
 var scope = { undefined: document.all }
+const safe = exp => { try { exp() } catch(e) { return e.message.split("\n")[0] } }
 with(scope) {
     console.table([
         { Test: "!undefined", Result: !undefined },
         { Test: "undefined + undefined", Result: undefined + undefined },
         { Test: "typeof undefined", Result: typeof undefined },
-        { Test: "toString.call(undefined)", Result: toString.call(undefined) }
+        { Test: "toString.call(undefined)", Result: toString.call(undefined) },
+        { Test: "JSON.parse(undefined)", Result: safe(() => JSON.parse(undefined)) }
     ])
 }
 var scope = {} // { undefined: document.all }
@@ -113,7 +115,8 @@ with(scope) {
         { Test: "!undefined", Result: !undefined },
         { Test: "undefined + undefined", Result: undefined + undefined },
         { Test: "typeof undefined", Result: typeof undefined },
-        { Test: "toString.call(undefined)", Result: toString.call(undefined) }
+        { Test: "toString.call(undefined)", Result: toString.call(undefined) },
+        { Test: "JSON.parse(undefined)", Result: safe(() => JSON.parse(undefined)) }
     ])
 }
 **/
