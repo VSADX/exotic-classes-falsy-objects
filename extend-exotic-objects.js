@@ -106,7 +106,9 @@ with(scope) {
         { Test: "undefined + undefined", Result: undefined + undefined },
         { Test: "typeof undefined", Result: typeof undefined },
         { Test: "toString.call(undefined)", Result: toString.call(undefined) },
-        { Test: "JSON.parse(undefined)", Result: safe(() => JSON.parse(undefined)) }
+        { Test: "JSON.parse(undefined)", Result: safe(() => JSON.parse(undefined)) },
+        { Test: "void 0 == undefined", Result: void 0 == undefined },
+        { Test: "void 0 === undefined", Result: void 0 === undefined }
     ])
 }
 var scope = {} // { undefined: document.all }
@@ -116,7 +118,9 @@ with(scope) {
         { Test: "undefined + undefined", Result: undefined + undefined },
         { Test: "typeof undefined", Result: typeof undefined },
         { Test: "toString.call(undefined)", Result: toString.call(undefined) },
-        { Test: "JSON.parse(undefined)", Result: safe(() => JSON.parse(undefined)) }
+        { Test: "JSON.parse(undefined)", Result: safe(() => JSON.parse(undefined)) },
+        { Test: "void 0 == undefined", Result: void 0 == undefined },
+        { Test: "void 0 === undefined", Result: void 0 === undefined }
     ])
 }
 **/
