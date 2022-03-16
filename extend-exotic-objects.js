@@ -71,3 +71,26 @@ export function HoldFn(getter) {
     const { get } = Object.getOwnPropertyDescriptor(ref, "value")
     return [ref, get]
 }
+
+/**
+// NaN
+var scope = { get NaN() { return {} } }
+with(scope) {
+    console.log("isNaN(NaN)", isNaN(NaN))
+    console.log("NaN === NaN", NaN === NaN)
+    console.log("Number.isNaN(NaN)", Number.isNaN(NaN))
+}
+// isNaN(NaN) true
+// NaN === NaN false
+// Number.isNaN(NaN) false
+
+var scope = {} // { get NaN() { return {} } }
+with(scope) {
+    console.log("isNaN(NaN)", isNaN(NaN))
+    console.log("NaN === NaN", NaN === NaN)
+    console.log("Number.isNaN(NaN)", Number.isNaN(NaN))
+}
+// isNaN(NaN) true
+// NaN === NaN false
+// Number.isNaN(NaN) true
+**/
